@@ -47,7 +47,11 @@ def generate_page(from_path, template_path, dest_path, basepath):
 	with open(template_path, "r", encoding="utf-8") as file:
 		template = file.read()
 
-	template = template.replace("{{ Title }}", title).replace("{{ Content }}", content).replace("href=\"/", f"href=\"{basepath}")
+	template = template.replace("{{ Title }}", title)
+	template = template.replace("{{ Content }}", content)
+	template = template.replace("href=\"/", f"href=\"{basepath}")
+	template = template.replace("src=\"/", f"src=\"{basepath}")
+
 	html_file_name = os.path.basename(from_path).rstrip(".md") + ".html"
 	with open(os.path.join(dest_path, html_file_name), "w") as file:
 		file.write(template)
